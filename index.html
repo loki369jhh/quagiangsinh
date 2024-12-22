@@ -6,33 +6,58 @@
   <title>Christmas Gift</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       text-align: center;
       margin: 50px;
-      background-color: #f7f8fa;
+      background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+      color: #333;
+    }
+    h1 {
+      color: #d6336c;
+      font-size: 3em;
+      margin-bottom: 20px;
+      animation: fadeIn 2s;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      animation: fadeIn 3s;
     }
     a {
       color: #fff;
-      background-color: #28a745;
-      padding: 10px 20px;
+      background: linear-gradient(to right, #e91e63, #d6336c);
+      padding: 12px 25px;
       text-decoration: none;
-      border-radius: 5px;
-      font-size: 18px;
+      border-radius: 25px;
+      font-size: 1.2em;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
     }
     a:hover {
-      background-color: #218838;
+      background: linear-gradient(to right, #d6336c, #ad1457);
+      transform: scale(1.1);
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
   <h1>Chúc Mừng Giáng Sinh</h1>
-  <p>Bấm vào liên kết dưới đây để nhận quà và lời chúc đặc biệt!</p>
-  <a href="#" onclick="showGift()">Nhận Quà Giáng Sinh</a>
+  <p>Bấm vào liên kết dưới đây để nhận lời chúc từ trái tim anh!</p>
+  <a href="#" onclick="showGift()">Nhận Lời Chúc Đặc Biệt</a>
 
   <script>
     function showGift() {
-      const message = "🎄 Chúc em một Giáng Sinh an lành và ấm áp! 🎁 \n" +
-                      "thiên Thần à, chúc em một mùa Giáng sinh vui vẻ. Hãy luôn vui tươi và hạnh phúc nhé, anh sẽ luôn sưởi ấm trái tim em";
+      const message = "✨ Thiên Thần à, chúc em một mùa Giáng sinh vui vẻ. \n" +
+                      "Hãy luôn vui tươi và hạnh phúc nhé. \n" +
+                      "Anh sẽ luôn sưởi ấm trái tim em! 💖";
       alert(message);
     }
   </script>
