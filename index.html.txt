@@ -4,37 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christmas Gift</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 50px;
-      background-color: #f7f8fa;
-    }
-    a {
-      color: #fff;
-      background-color: #28a745;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 18px;
-    }
-    a:hover {
-      background-color: #218838;
-    }
-  </style>
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Kết nối file CSS -->
 </head>
 <body>
   <h1>Chúc Mừng Giáng Sinh</h1>
   <p>Bấm vào liên kết dưới đây để nhận quà và lời chúc đặc biệt!</p>
   <a href="#" onclick="showGift()">Nhận Quà Giáng Sinh</a>
+  <img src="/images/example.jpg" alt="Christmas Gift" style="width:300px; margin-top:20px;"> <!-- Hình ảnh -->
 
-  <script>
-    function showGift() {
-      const message = "🎄 Chúc bạn một Giáng Sinh an lành và ấm áp! 🎁 \n" +
-                      "Hãy tận hưởng món quà nhỏ của chúng tôi: Một ngày đầy niềm vui và hạnh phúc!";
-      alert(message);
-    }
-  </script>
+  <script src="/js/script.js"></script> <!-- Kết nối file JS -->
 </body>
 </html>
