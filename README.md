@@ -1,2 +1,0 @@
-# quagiangsinh
-quagianhsinhny
