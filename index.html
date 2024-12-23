@@ -8,9 +8,28 @@
     body {
       font-family: 'Arial', sans-serif;
       text-align: center;
-      margin: 50px;
+      margin: 0;
+      padding: 0;
       background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+      background-size: 400% 400%;
+      animation: backgroundEffect 10s infinite;
       color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    @keyframes backgroundEffect {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
     h1 {
       color: #d6336c;
@@ -92,7 +111,7 @@
 </head>
 <body>
   <h1>Chúc Mừng Giáng Sinh</h1>
-  <p>Bấm vào liên kết dưới đây để nhận lời chúc từ trái tim anh!</p>
+  <p>Nhận quà Giáng sinh từ trái tim anh!</p>
   <a href="#" onclick="showGift()">Nhận Lời Chúc Đặc Biệt</a>
 
   <div class="container">
