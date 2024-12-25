@@ -1,258 +1,239 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-<TITLE> Romantic Canvas </TITLE>
-<META NAME="Generator" CONTENT="EditPlus">
-<META NAME="Author" CONTENT="">
-<META NAME="Keywords" CONTENT="">
-<META NAME="Description" CONTENT="">
-<style>
-html, body {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    background: #000;
-}
-canvas {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-</style>
-</HEAD>
-<BODY>
-<canvas id="pinkboard"></canvas>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhiệm Vụ Kiếm Tiền</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .task-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .task-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .task-list {
+            margin-top: 20px;
+        }
+        .task-item {
+            background-color: #f8f9fa;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+            transition: opacity 0.3s ease, text-decoration 0.3s ease;
+        }
+        .task-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .task-description {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #555;
+        }
+        .task-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .task-button:hover {
+            background-color: #0056b3;
+        }
+        .reset-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .reset-button:hover {
+            background-color: #c82333;
+        }
+        .progress {
+            margin-top: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar-inner {
+            height: 20px;
+            width: 0;
+            background-color: #28a745;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+        /* CSS for completed tasks */
+        .completed {
+            opacity: 0.6; /* Make the task faded */
+            text-decoration: line-through; /* Strike through the task */
+        }
+    </style>
+</head>
+<body>
+
+<div class="task-container">
+    <div class="task-header">Nhiệm Vụ Kiếm Tiền Hôm Nay</div>
+
+    <div class="task-list">
+        <!-- List of tasks -->
+        <div class="task-item" id="task1">
+            <div class="task-title">Nhiệm Vụ 1: Xem Video Hướng Dẫn</div>
+            <div class="task-description">Xem video hướng dẫn kiếm tiền. Kiếm 100k cho mỗi video xem.</div>
+            <button class="task-button" onclick="completeTask(1, 100, 'task1')">Hoàn Thành Nhiệm Vụ</button>
+        </div>
+
+        <div class="task-item" id="task2">
+            <div class="task-title">Nhiệm Vụ 2: Giới Thiệu Bạn Bè</div>
+            <div class="task-description">Giới thiệu bạn bè để tham gia. Kiếm 200k cho mỗi người giới thiệu thành công.</div>
+            <button class="task-button" onclick="completeTask(2, 200, 'task2')">Hoàn Thành Nhiệm Vụ</button>
+        </div>
+
+        <div class="task-item" id="task3">
+            <div class="task-title">Nhiệm Vụ 3: Viết Bình Luận</div>
+            <div class="task-description">Viết bình luận về sản phẩm. Kiếm 150k cho mỗi bình luận hợp lệ.</div>
+            <button class="task-button" onclick="completeTask(3, 150, 'task3')">Hoàn Thành Nhiệm Vụ</button>
+        </div>
+
+        <div class="task-item" id="task4">
+            <div class="task-title">Nhiệm Vụ 4: Chia Sẻ Trên Mạng Xã Hội</div>
+            <div class="task-description">Chia sẻ thông tin trên mạng xã hội. Kiếm 250k cho mỗi lần chia sẻ thành công.</div>
+            <button class="task-button" onclick="completeTask(4, 250, 'task4')">Hoàn Thành Nhiệm Vụ</button>
+        </div>
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar">
+            <div class="progress-bar-inner" id="progressBar" style="width: 0%;">0%</div>
+        </div>
+    </div>
+
+    <div class="task-header">Điểm EXP: <span id="expPoints">0</span></div>
+    <div class="task-header">Số Nhiệm Vụ Hoàn Thành: <span id="tasksCompleted">0</span></div>
+
+    <!-- Reset button -->
+    <button class="reset-button" onclick="resetData()">Reset Dữ Liệu</button>
+</div>
+
 <script>
-// Settings for the particle effects
-var settings = {
-    particles: {
-        length:   500, // maximum amount of particles
-        duration:   2, // particle duration in sec
-        velocity: 100, // particle velocity in pixels/sec
-        effect: -0.75, // play with this for a nice effect
-        size:      30, // particle size in pixels
-    },
-};
+// Kiểm tra nếu có dữ liệu lưu trữ trong localStorage và khôi phục giá trị
+let expPoints = localStorage.getItem("expPoints");
+let tasksCompleted = localStorage.getItem("tasksCompleted");
+let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+let lastLoginTime = localStorage.getItem("lastLoginTime");
 
-// RequestAnimationFrame polyfill
-(function(){
-    var b = 0;
-    var c = ["ms","moz","webkit","o"];
-    for(var a = 0; a < c.length && !window.requestAnimationFrame; ++a) {
-        window.requestAnimationFrame = window[c[a]+"RequestAnimationFrame"];
-        window.cancelAnimationFrame = window[c[a]+"CancelAnimationFrame"] || window[c[a]+"CancelRequestAnimationFrame"];
-    }
-    if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = function(h, e) {
-            var d = new Date().getTime();
-            var f = Math.max(0, 16 - (d - b));
-            var g = window.setTimeout(function(){h(d + f)}, f);
-            b = d + f;
-            return g;
-        };
-    }
-    if (!window.cancelAnimationFrame) {
-        window.cancelAnimationFrame = function(d) { clearTimeout(d); }
-    }
-})();
+// Nếu không có dữ liệu lưu trữ, khởi tạo giá trị mặc định
+if (expPoints === null) {
+    expPoints = 0;
+    tasksCompleted = 0;
+}
 
-// Particle class
-var Point = (function() {
-    function Point(x, y) {
-        this.x = (typeof x !== 'undefined') ? x : 0;
-        this.y = (typeof y !== 'undefined') ? y : 0;
-    }
-    Point.prototype.clone = function() {
-        return new Point(this.x, this.y);
-    };
-    Point.prototype.length = function(length) {
-        if (typeof length == 'undefined') return Math.sqrt(this.x * this.x + this.y * this.y);
-        this.normalize();
-        this.x *= length;
-        this.y *= length;
-        return this;
-    };
-    Point.prototype.normalize = function() {
-        var length = this.length();
-        this.x /= length;
-        this.y /= length;
-        return this;
-    };
-    return Point;
-})();
+// Kiểm tra nếu đã qua 1 tiếng kể từ lần đăng nhập gần nhất
+if (lastLoginTime && (new Date().getTime() - lastLoginTime) > 3600000) {
+    alert("Bạn đã đăng nhập quá 1 giờ. Hãy đăng nhập lại.");
+    resetData();  // Reset dữ liệu khi thời gian đã qua 1 giờ
+}
 
-// Particle class
-var Particle = (function() {
-    function Particle() {
-        this.position = new Point();
-        this.velocity = new Point();
-        this.acceleration = new Point();
-        this.age = 0;
-    }
-    Particle.prototype.initialize = function(x, y, dx, dy) {
-        this.position.x = x;
-        this.position.y = y;
-        this.velocity.x = dx;
-        this.velocity.y = dy;
-        this.acceleration.x = dx * settings.particles.effect;
-        this.acceleration.y = dy * settings.particles.effect;
-        this.age = 0;
-    };
-    Particle.prototype.update = function(deltaTime) {
-        this.position.x += this.velocity.x * deltaTime;
-        this.position.y += this.velocity.y * deltaTime;
-        this.velocity.x += this.acceleration.x * deltaTime;
-        this.velocity.y += this.acceleration.y * deltaTime;
-        this.age += deltaTime;
-    };
-    Particle.prototype.draw = function(context, image) {
-        function ease(t) {
-            return (--t) * t * t + 1;
-        }
-        var size = image.width * ease(this.age / settings.particles.duration);
-        context.globalAlpha = 1 - this.age / settings.particles.duration;
-        context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
-    };
-    return Particle;
-})();
+// Lưu thời gian đăng nhập lần này vào localStorage
+localStorage.setItem("lastLoginTime", new Date().getTime());
 
-// ParticlePool class
-var ParticlePool = (function() {
-    var particles,
-        firstActive = 0,
-        firstFree   = 0,
-        duration    = settings.particles.duration;
-    function ParticlePool(length) {
-        particles = new Array(length);
-        for (var i = 0; i < particles.length; i++)
-            particles[i] = new Particle();
-    }
-    ParticlePool.prototype.add = function(x, y, dx, dy) {
-        particles[firstFree].initialize(x, y, dx, dy);
-        firstFree++;
-        if (firstFree == particles.length) firstFree = 0;
-        if (firstActive == firstFree) firstActive++;
-        if (firstActive == particles.length) firstActive = 0;
-    };
-    ParticlePool.prototype.update = function(deltaTime) {
-        var i;
-        if (firstActive < firstFree) {
-            for (i = firstActive; i < firstFree; i++)
-                particles[i].update(deltaTime);
-        }
-        if (firstFree < firstActive) {
-            for (i = firstActive; i < particles.length; i++)
-                particles[i].update(deltaTime);
-            for (i = 0; i < firstFree; i++)
-                particles[i].update(deltaTime);
-        }
-        while (particles[firstActive].age >= duration && firstActive != firstFree) {
-            firstActive++;
-            if (firstActive == particles.length) firstActive = 0;
-        }
-    };
-    ParticlePool.prototype.draw = function(context, image) {
-        if (firstActive < firstFree) {
-            for (var i = firstActive; i < firstFree; i++)
-                particles[i].draw(context, image);
-        }
-        if (firstFree < firstActive) {
-            for (var i = firstActive; i < particles.length; i++)
-                particles[i].draw(context, image);
-            for (var i = 0; i < firstFree; i++)
-                particles[i].draw(context, image);
-        }
-    };
-    return ParticlePool;
-})();
+// Hiển thị dữ liệu lên giao diện
+document.getElementById("expPoints").textContent = expPoints;
+document.getElementById("tasksCompleted").textContent = tasksCompleted;
 
-// Initialize canvas and particles
-(function(canvas) {
-    var context = canvas.getContext('2d'),
-        particles = new ParticlePool(settings.particles.length),
-        particleRate = settings.particles.length / settings.particles.duration,
-        time;
+// Lặp qua các nhiệm vụ đã hoàn thành và đánh dấu chúng
+completedTasks.forEach(function(taskId) {
+    document.getElementById(taskId).classList.add("completed");
+});
 
-    // Point on heart function for particle positions
-    function pointOnHeart(t) {
-        return new Point(
-            160 * Math.pow(Math.sin(t), 3),
-            130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
-        );
+function completeTask(taskId, reward, taskElementId) {
+    // Kiểm tra nếu nhiệm vụ đã hoàn thành
+    if (completedTasks.includes(taskElementId)) {
+        alert("Bạn đã hoàn thành nhiệm vụ này rồi!");
+        return;
     }
 
-    // Create the particle image using a dummy canvas
-    var image = (function() {
-        var canvas = document.createElement('canvas'),
-            context = canvas.getContext('2d');
-        canvas.width = settings.particles.size;
-        canvas.height = settings.particles.size;
-        function to(t) {
-            var point = pointOnHeart(t);
-            point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350;
-            point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350;
-            return point;
-        }
-        context.beginPath();
-        var t = -Math.PI;
-        var point = to(t);
-        context.moveTo(point.x, point.y);
-        while (t < Math.PI) {
-            t += 0.01;
-            point = to(t);
-            context.lineTo(point.x, point.y);
-        }
-        context.closePath();
-        context.fillStyle = '#ea80b0';
-        context.fill();
-        var image = new Image();
-        image.src = canvas.toDataURL();
-        return image;
-    })();
+    // Cập nhật điểm EXP và số nhiệm vụ đã hoàn thành
+    expPoints = parseInt(expPoints) + reward;
+    tasksCompleted = parseInt(tasksCompleted) + 1;
 
-    // Render function
-    function render() {
-        requestAnimationFrame(render);
-        var newTime = new Date().getTime() / 1000,
-            deltaTime = newTime - (time || newTime);
-        time = newTime;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        
-        var amount = particleRate * deltaTime;
-        for (var i = 0; i < amount; i++) {
-            var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
-            var dir = pos.clone().length(settings.particles.velocity);
-            particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y);
-        }
-        
-        particles.update(deltaTime);
-        particles.draw(context, image);
-        
-        // Drawing the romantic confession with glowing effect
-        context.font = '50px Arial';
-        context.fillStyle = 'white';
-        context.textAlign = 'center';
-        context.shadowColor = 'rgba(255, 255, 255, 0.8)';
-        context.shadowBlur = 15;
-        context.fillText('I love you, Nhung', canvas.width / 2, canvas.height / 3); // Draw romantic message
-        
-        // Additional glowing effect for the name
-        context.shadowColor = 'rgba(234, 128, 176, 1)';
-        context.fillText('Nhung', canvas.width / 2, canvas.height - 50); // Draw "Nhung"
-    }
+    // Thêm nhiệm vụ vào danh sách đã hoàn thành
+    completedTasks.push(taskElementId);
 
-    // Handle canvas resize
-    function onResize() {
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
-    }
+    // Lưu dữ liệu vào LocalStorage
+    localStorage.setItem("expPoints", expPoints);
+    localStorage.setItem("tasksCompleted", tasksCompleted);
+    localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
 
-    window.onresize = onResize;
-    setTimeout(function() {
-        onResize();
-        render();
-    }, 10);
-})(document.getElementById('pinkboard'));
+    // Cập nhật giao diện
+    document.getElementById("expPoints").textContent = expPoints;
+    document.getElementById("tasksCompleted").textContent = tasksCompleted;
+
+    // Cập nhật tiến độ
+    let progress = (tasksCompleted / 4) * 100; // Giả sử có 4 nhiệm vụ
+    document.getElementById("progressBar").style.width = progress + "%";
+    document.getElementById("progressBar").textContent = Math.round(progress) + "%";
+
+    // Đánh dấu nhiệm vụ đã hoàn thành
+    document.getElementById(taskElementId).classList.add("completed");
+
+    // Thông báo hoàn thành
+    alert(`Chúc mừng! Bạn đã hoàn thành nhiệm vụ và kiếm được ${reward}k. Tổng điểm EXP hiện tại: ${expPoints}`);
+}
+
+function resetData() {
+    // Xóa dữ liệu trong localStorage
+    localStorage.removeItem("expPoints");
+    localStorage.removeItem("tasksCompleted");
+    localStorage.removeItem("completedTasks");
+    localStorage.removeItem("lastLoginTime");
+
+    // Khôi phục lại các giá trị ban đầu
+    expPoints = 0;
+    tasksCompleted = 0;
+    completedTasks = [];
+
+    // Cập nhật lại giao diện
+    document.getElementById("expPoints").textContent = expPoints;
+    document.getElementById("tasksCompleted").textContent = tasksCompleted;
+
+    // Lặp qua các nhiệm vụ và bỏ dấu hoàn thành
+    document.querySelectorAll('.task-item').forEach(function(task) {
+        task.classList.remove("completed");
+    });
+
+    // Cập nhật tiến độ
+    document.getElementById("progressBar").style.width = "0%";
+    document.getElementById("progressBar").textContent = "0%";
+
+    alert("Dữ liệu đã được reset!");
+}
 </script>
-</BODY>
-</HTML>
+
+</body>
+</html>
