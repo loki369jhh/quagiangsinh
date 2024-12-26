@@ -125,6 +125,30 @@
             <div class="task-description">Chia sẻ thông tin trên mạng xã hội. Kiếm 250k cho mỗi lần chia sẻ thành công.</div>
             <button class="task-button" onclick="completeTask(4, 250, 'task4')">Hoàn Thành Nhiệm Vụ</button>
         </div>
+
+        <div class="task-item" id="task5">
+            <div class="task-title">Nhiệm Vụ 5: Hoàn Thành Bài Tập Online</div>
+            <div class="task-description">Hoàn thành bài tập online. Kiếm 300k cho mỗi bài tập hoàn thành.</div>
+            <button class="task-button" onclick="completeTask(5, 300, 'task5')">Hoàn Thành Nhiệm Vụ</button>
+        </div>
+
+        <div class="task-item" id="task6">
+            <div class="task-title">Nhiệm Vụ 6: Tham Gia Cuộc Thi</div>
+            <div class="task-description">Tham gia cuộc thi online. Kiếm 500k cho mỗi cuộc thi tham gia thành công.</div>
+            <button class="task-button" onclick="completeTask(6, 500, 'task6')">Hoàn Thành Nhiệm Vụ</button>
+        </div>
+
+        <div class="task-item" id="task7">
+            <div class="task-title">Nhiệm Vụ 7: Mời Bạn Tham Gia Chương Trình</div>
+            <div class="task-description">Mời bạn tham gia chương trình. Kiếm 400k cho mỗi bạn tham gia thành công.</div>
+            <button class="task-button" onclick="completeTask(7, 400, 'task7')">Hoàn Thành Nhiệm Vụ</button>
+        </div>
+
+        <div class="task-item" id="task8">
+            <div class="task-title">Nhiệm Vụ 8: Đăng Bài Viết Chia Sẻ Kinh Nghiệm</div>
+            <div class="task-description">Đăng bài viết chia sẻ kinh nghiệm. Kiếm 350k cho mỗi bài viết chia sẻ thành công.</div>
+            <button class="task-button" onclick="completeTask(8, 350, 'task8')">Hoàn Thành Nhiệm Vụ</button>
+        </div>
     </div>
 
     <div class="progress">
@@ -195,7 +219,7 @@ function completeTask(taskId, reward, taskElementId) {
     document.getElementById("tasksCompleted").textContent = tasksCompleted;
 
     // Cập nhật tiến độ
-    let progress = (tasksCompleted / 4) * 100; // Giả sử có 4 nhiệm vụ
+    let progress = (tasksCompleted / 8) * 100; // Giả sử có 8 nhiệm vụ
     document.getElementById("progressBar").style.width = progress + "%";
     document.getElementById("progressBar").textContent = Math.round(progress) + "%";
 
